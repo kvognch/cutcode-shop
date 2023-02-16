@@ -10,7 +10,7 @@ use Monolog\Logger;
 
 final class TelegramLoggerHandler extends AbstractProcessingHandler
 {
-    protected int $chatId;
+    protected string $chatId;
 
     protected string $token;
 
@@ -26,7 +26,7 @@ final class TelegramLoggerHandler extends AbstractProcessingHandler
 
     protected function write(array $record): void
     {
-        TelegramBotApi::sendMessage(
+        $result = TelegramBotApi::sendMessage(
             $this->token,
             $this->chatId,
             $record['formatted']
