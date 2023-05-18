@@ -1,9 +1,9 @@
 <?php
 
-use App\logging\Telegram\TelegramLoggerFactory;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
+use Support\Logging\Telegram\TelegramLoggerFactory;
 
 return [
 
@@ -42,7 +42,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you may configure the log channels for your application. Out of
-    | the box, Laravel uses the Monolog PHP logging library. This gives
+    | the box, Laravel uses the Monolog PHP Logging library. This gives
     | you a variety of powerful log handlers / formatters to utilize.
     |
     | Available Drivers: "single", "daily", "slack", "syslog",
@@ -123,8 +123,8 @@ return [
             'driver' => 'custom',
             'via' => TelegramLoggerFactory::class,
             'level' => env('LOG_LEVEL', 'debug'),
-            'chat_id' => -881405710,
-            'token' => '5882435194:AAEYBaKnytbzf5FHAzuOZIVXPF6xXH5qLus',
+            'chat_id' => env('LOG_TELEGRAM_BOT_CHAT_ID', ''),
+            'token' => env('LOG_TELEGRAM_BOT_TOKEN', ''),
         ],
     ],
 
