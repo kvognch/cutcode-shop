@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Traits\Models\HasSlug;
+use App\Traits\Models\HasThumbnail;
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,18 +14,33 @@ class Product extends Model
 {
     use HasFactory;
     use HasSlug;
+    use HasThumbnail;
 
     protected $fillable = [
         'slug',
         'title',
         'brand_id',
         'price',
-        'thumbnail'
+        'thumbnail',
+        'on_home_page',
+        'sorting'
     ];
+
+    protected function thumbnailDir(): string
+    {
+        return 'products';
+    }
 
     public function brand(): BelongsTo
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    public function scopeHomePage(Builder $query)
+    {
+        $query->where('on_home_page', true)
+            ->orderBy('sorting')
+            ->limit(8);
     }
 
     public function categories(): BelongsToMany
