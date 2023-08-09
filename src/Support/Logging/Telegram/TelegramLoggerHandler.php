@@ -6,11 +6,11 @@ namespace Support\Logging\Telegram;
 
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Logger;
-use Services\Telegram\TelegramBotApi;
+use Services\Telegram\TelegramBotApiContract;
 
 final class TelegramLoggerHandler extends AbstractProcessingHandler
 {
-    protected string $chatId;
+    protected int $chatId;
 
     protected string $token;
 
@@ -20,13 +20,13 @@ final class TelegramLoggerHandler extends AbstractProcessingHandler
 
         parent::__construct($level);
 
-        $this->chatId = $config['chat_id'];
+        $this->chatId = (int)$config['chat_id'];
         $this->token = $config['token'];
     }
 
     protected function write(array $record): void
     {
-        $result = TelegramBotApi::sendMessage(
+        app(TelegramBotApiContract::class)::sendMessage(
             $this->token,
             $this->chatId,
             $record['formatted']
