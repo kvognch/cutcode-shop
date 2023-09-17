@@ -15,7 +15,7 @@ final class TelegramBotApiTest extends TestCase
      * @test
      * @return void
      */
-    public function is_send_message_success_by_http_fake(): void
+    public function it_send_message_success_by_http_fake(): void
     {
         Http::fake([
             TelegramBotApi::HOST . '*' => Http::response(['ok' => true])
@@ -31,7 +31,7 @@ final class TelegramBotApiTest extends TestCase
      * @test
      * @return void
      */
-    public function is_send_message_success_by_fake_instance(): void
+    public function it_send_message_success_by_fake_instance(): void
     {
         TelegramBotApi::fake()
             ->returnTrue();
@@ -45,7 +45,7 @@ final class TelegramBotApiTest extends TestCase
      * @test
      * @return void
      */
-    public function is_send_message_fail_by_fake_instance(): void
+    public function it_send_message_fail_by_fake_instance(): void
     {
         TelegramBotApi::fake()
             ->returnFalse();
@@ -54,5 +54,5 @@ final class TelegramBotApiTest extends TestCase
 
         $this->assertFalse($result);
     }
-    
+
 }

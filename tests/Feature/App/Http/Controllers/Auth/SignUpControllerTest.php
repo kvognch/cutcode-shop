@@ -51,7 +51,7 @@ class SignUpControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_page_success(): void
+    public function it_page_success(): void
     {
         $this->get(action([SignUpController::class, 'page']))
             ->assertOk()
@@ -63,7 +63,7 @@ class SignUpControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_validation_success(): void
+    public function it_validation_success(): void
     {
         $this->request()
             ->assertValid();
@@ -73,7 +73,7 @@ class SignUpControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_should_fail_validation_on_password_confirm(): void
+    public function it_should_fail_validation_on_password_confirm(): void
     {
         $this->request['password'] = '123';
         $this->request['password_confirmation'] = '1234';
@@ -86,7 +86,7 @@ class SignUpControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_user_created_success(): void
+    public function it_user_created_success(): void
     {
         $this->assertDatabaseMissing('users', [
             'email' => $this->request['email']
@@ -103,7 +103,7 @@ class SignUpControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_should_fail_validation_on_unique_email(): void
+    public function it_should_fail_validation_on_unique_email(): void
     {
         UserFactory::new()->create([
             'email' => $this->request['email']
@@ -121,7 +121,7 @@ class SignUpControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_registered_event_and_listeners_dispatched(): void
+    public function it_registered_event_and_listeners_dispatched(): void
     {
         Event::fake();
 
@@ -138,7 +138,7 @@ class SignUpControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_notification_sent(): void
+    public function it_notification_sent(): void
     {
         $this->request();
 
@@ -153,7 +153,7 @@ class SignUpControllerTest extends TestCase
      * @return void
      */
 
-    public function is_user_authenticated_after_and_redirected(): void
+    public function it_user_authenticated_after_and_redirected(): void
     {
         $this->request()
             ->assertRedirect(route('home'));

@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace Domain\Catalog\Models;
 
-use Domain\Catalog\Models\Brand;
-use Domain\Catalog\Models\Category;
+use App\Models\Product;
+use Database\Factories\BrandFactory;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Support\Casts\PriceCast;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Support\Traits\Models\HasSlug;
 use Support\Traits\Models\HasThumbnail;
 
-class Product extends Model
+class Brand extends Model
 {
     use HasFactory;
     use HasSlug;
@@ -22,36 +20,25 @@ class Product extends Model
     protected $fillable = [
         'slug',
         'title',
-        'brand_id',
-        'price',
         'thumbnail',
         'on_home_page',
         'sorting'
     ];
 
-    protected $casts = [
-        'price' => PriceCast::class
-    ];
-
     protected function thumbnailDir(): string
     {
-        return 'products';
-    }
-
-    public function brand(): BelongsTo
-    {
-        return $this->belongsTo(Brand::class);
+        return 'brands';
     }
 
     public function scopeHomePage(Builder $query)
     {
         $query->where('on_home_page', true)
             ->orderBy('sorting')
-            ->limit(8);
+            ->limit(6);
     }
 
-    public function categories(): BelongsToMany
+    public function products(): HasMany
     {
-        return $this->belongsToMany(Category::class);
+        return $this->hasMany(Product::class);
     }
 }

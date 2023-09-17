@@ -53,7 +53,7 @@ class SocialAuthControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_github_redirect_success(): void
+    public function it_github_redirect_success(): void
     {
         $this->get(
             action(
@@ -67,7 +67,7 @@ class SocialAuthControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_driver_not_found(): void
+    public function it_driver_not_found(): void
     {
         $this->expectException(DomainException::class);
 
@@ -95,7 +95,7 @@ class SocialAuthControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_github_callback_created_user_success(): void
+    public function it_github_callback_created_user_success(): void
     {
         $githubId = str()->random(10);
 
@@ -119,7 +119,7 @@ class SocialAuthControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_authenticated_by_existing_user(): void
+    public function it_authenticated_by_existing_user(): void
     {
         $githubId = str()->random(10);
 

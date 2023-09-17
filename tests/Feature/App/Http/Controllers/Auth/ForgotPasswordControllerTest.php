@@ -24,7 +24,7 @@ class ForgotPasswordControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_page_success(): void
+    public function it_page_success(): void
     {
         $this->get(action([ForgotPasswordController::class, 'page']))
             ->assertOk()
@@ -35,7 +35,7 @@ class ForgotPasswordControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_handle_success(): void
+    public function it_handle_success(): void
     {
         $user = UserFactory::new()->create($this->testingCredentials());
 
@@ -49,7 +49,7 @@ class ForgotPasswordControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_handle_fail(): void
+    public function it_handle_fail(): void
     {
         $this->assertDatabaseMissing('users', $this->testingCredentials());
 

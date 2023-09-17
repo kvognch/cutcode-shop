@@ -16,7 +16,7 @@ class SignInControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_page_success(): void
+    public function it_page_success(): void
     {
         $this->get(action([SignInController::class, 'page']))
             ->assertOk()
@@ -28,7 +28,7 @@ class SignInControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_handle_success(): void
+    public function it_handle_success(): void
     {
         $password = '123456789';
 
@@ -54,7 +54,7 @@ class SignInControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_handle_fail(): void
+    public function it_handle_fail(): void
     {
         $request = SignInFormRequest::factory()->create([
             'email' => 'testiing@cutcode.ru',
@@ -72,7 +72,7 @@ class SignInControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_logout_success(): void
+    public function it_logout_success(): void
     {
         $user = UserFactory::new()->create([
             'email' => 'testiing@cutcode.ru'
@@ -89,7 +89,7 @@ class SignInControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_logout_guest_middleware_fail(): void
+    public function it_logout_guest_middleware_fail(): void
     {
         $this->delete(action([SignInController::class, 'logout']))
             ->assertRedirect(route('home'));

@@ -30,7 +30,7 @@ class ResetPasswordControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_page_success(): void
+    public function it_page_success(): void
     {
         $this->get(action([ResetPasswordController::class, 'page'], ['token' => $this->token]))
             ->assertOk()
@@ -41,7 +41,7 @@ class ResetPasswordControllerTest extends TestCase
      * @test
      * @return void
      */
-    public function is_handle(): void
+    public function it_handle(): void
     {
         $password = '1234567890';
         $password_confirmation = '1234567890';
