@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Domain\Auth\DTOs;
 
 use Illuminate\Http\Request;
-use Support\Traits\Makeble;
+use Support\Traits\Makeable;
 
 final class NewUserDTO
 {
-    use Makeble;
+    use Makeable;
 
     public function __construct(
         public readonly string $name,

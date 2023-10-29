@@ -6,11 +6,11 @@ namespace Support\ValueObjects;
 
 use InvalidArgumentException;
 use Stringable;
-use Support\Traits\Makeble;
+use Support\Traits\Makeable;
 
 final class Price implements Stringable
 {
-    use Makeble;
+    use Makeable;
 
     private array $currencies = [
         'RUB' => '₽'
